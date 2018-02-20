@@ -1,0 +1,14 @@
+<body>
+  <div class = "container">
+    <header>
+      <h1>Available Tutors</h1>
+      {{> loginButtons}}
+    </header>
+
+    <ul>
+      {{#each tutors}}
+        {{>tutor}}
+      {{/each}}
+    </ul>
+  </div>
+</body>
