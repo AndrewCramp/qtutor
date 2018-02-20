@@ -1,14 +1,28 @@
 <body>
   <div class = "container">
-    <header>
-      <h1>Available Tutors</h1>
-      {{> loginButtons}}
-    </header>
-
-    <ul>
-      {{#each tutors}}
-        {{>tutor}}
-      {{/each}}
+    <ul class = "menuBar">
+      <li><h1 class = "title"> QTutor </h1></li>
+      <li class = "signin">{{> loginButtons}}</li>
     </ul>
+    <div class = "sidePanel">
+      <div class = "searchPanel">
+        <h2>Find a Tutor</h2>
+        <ul class = "courses">
+          <li><input type="checkbox">APSC 143</li>
+          <li><input type="checkbox">APSC 171</li>
+          <li><input type="checkbox">APSC 151</li>
+          <li><input type="checkbox">APSC 111</li>
+          <li><input type="checkbox">APSC 131</li>
+          <li><button type="button" class="search">Search</button></li>
+        </ul>
+      </div>
+      <div class = "tutorPanel">
+        <ul class="tutors">
+          {{#each tutors}}
+            {{>tutor}}
+          {{/each}}
+        </ul>
+      </div>
+    </div>
   </div>
 </body>

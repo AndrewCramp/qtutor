@@ -7,8 +7,90 @@ h1 {
   margin-right: 1em;
 }
 .container {
-  max-width: 600px;
-  margin: 0 auto;
   min-height: 100%;
   background: white;
+}
+body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Lato', sans-serif;
+}
+.menuBar {
+  margin: 0;
+  padding: 0;
+  color: #ffffff;
+  text-align: center;
+  background-color: #2E3638;
+  list-style: none;
+}
+.menuBar > li {
+  display: inline-block;
+}
+.title{
+  text-align: center;
+}
+.signin{
+  float: left;
+  margin-left: 10px
+}
+
+.sidePanel{
+  width:300px;
+  height: 100%;
+  margin: 0;
+  border: 2px solid #d3d3d3;
+}
+.courses{
+  list-style: none;
+}
+.tutors {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+  height: 500px;
+}
+.tutors::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #D62929;
+}
+.tutors > li {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: 0;
+  border: 1px Solid #d3d3d3;
+}
+.searchPanel{
+  height: 175px;
+  text-align: left;
+  border-bottom: 1px solid #d3d3d3;
+}
+.request{
+    float: right;
+    color: white;
+    background: #4C8FFB;
+    border: 1px #3079ED solid;
+    box-shadow: inset 0 1px 0 #80B0FB;
+}
+
+.request:hover, .search:hover {
+    border: 1px #2F5BB7 solid;
+    box-shadow: 0 1px 1px #EAEAEA, inset 0 1px 0 #5A94F1;
+    background: #3F83F1;
+}
+
+.request:active, .search:active {
+    box-shadow: inset 0 2px 5px #2370FE;
+}
+.search {
+    float: left;
+    color: white;
+    background: #4C8FFB;
+    border: 1px #3079ED solid;
+    box-shadow: inset 0 1px 0 #80B0FB;
 }
