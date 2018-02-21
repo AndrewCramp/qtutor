@@ -4,25 +4,44 @@
       <li><h1 class = "title"> QTutor </h1></li>
       <li class = "signin">{{> loginButtons}}</li>
     </ul>
-    <div class = "sidePanel">
-      <div class = "searchPanel">
-        <h2>Find a Tutor</h2>
-        <ul class = "courses">
-          <li><input type="checkbox">APSC 143</li>
-          <li><input type="checkbox">APSC 171</li>
-          <li><input type="checkbox">APSC 151</li>
-          <li><input type="checkbox">APSC 111</li>
-          <li><input type="checkbox">APSC 131</li>
-          <li><button type="button" class="search">Search</button></li>
-        </ul>
-      </div>
-      <div class = "tutorPanel">
-        <ul class="tutors">
-          {{#each tutors}}
-            {{>tutor}}
-          {{/each}}
-        </ul>
-      </div>
-    </div>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var uluru = {lat:44.2253, lng:-76.4951};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcI9kTa2uXNhtw-DMbwJZE_tAs9cPbqgk&callback=initMap">
+    </script>
+    {{#if currentUser}}
+      <div class = "sidePanel">
+        <div class = "searchPanel">
+          <h2>Find a Tutor</h2>
+          <ul class = "courses">
+            <li><input type="checkbox">APSC 143</li>
+            <li><input type="checkbox">APSC 171</li>
+            <li><input type="checkbox">APSC 151</li>
+            <li><input type="checkbox">APSC 111</li>
+            <li><input type="checkbox">APSC 131</li>
+            <li><button type="button" class="search">Search</button></li>
+          </ul>
+        </div>
+        <div class = "tutorPanel">
+          <ul class="tutorsList">
+            {{#each tutors}}
+              {{> tutor}}
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+    {{/if}}
   </div>
 </body>

@@ -19,6 +19,7 @@ body{
 .menuBar {
   margin: 0;
   padding: 0;
+  height: 10%;
   color: #ffffff;
   text-align: center;
   background-color: #2E3638;
@@ -36,28 +37,30 @@ body{
 }
 
 .sidePanel{
-  width:300px;
+  width:24.5%;
   height: 100%;
+  float:left;
   margin: 0;
   border: 2px solid #d3d3d3;
+}
+#map {
+  float: right;
+  margin:0;
+  padding: 0;
+  width: 75%;
+  height: 700px;
 }
 .courses{
   list-style: none;
 }
-.tutors {
+.tutorsList {
   list-style: none;
   padding: 0;
   margin: 0;
   overflow: auto;
   height: 500px;
 }
-.tutors::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-	background-color: #D62929;
-}
-.tutors > li {
+.tutorsList > li {
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 0px;
