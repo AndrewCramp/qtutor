@@ -1,9 +1,41 @@
 <body>
-  <div class = "container">
-    <ul class = "menuBar">
+  <div class = "container-fluid">
+    <ul id="menuBar">
       <li><h1 class = "title"> QTutor </h1></li>
-      <li class = "signin">{{> loginButtons}}</li>
+      <li class = "signin">
+        {{#if currentUser}}
+          {{> dashboard}}
+        {{else}}
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login-modal">Login/Register</button>
+        {{/if}}
+      </li>
     </ul>
+    <div class="modal" id="login-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-header">Login</h3>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            {{> login}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="register-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-header">Register</h3>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            {{> register}}
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="map"></div>
     <script>
       function initMap() {
@@ -21,6 +53,11 @@
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcI9kTa2uXNhtw-DMbwJZE_tAs9cPbqgk&callback=initMap">
     </script>
+    <script>
+      var body = document.body, html = document.documentElement;
+      var height = $(window).height()-document.getElementById('menuBar').clientHeight;
+      document.getElementById('map').style.height = height + 'px';
+    </script>
     {{#if currentUser}}
       <div class = "sidePanel">
         <div class = "searchPanel">
@@ -31,7 +68,7 @@
             <li><input type="checkbox">APSC 151</li>
             <li><input type="checkbox">APSC 111</li>
             <li><input type="checkbox">APSC 131</li>
-            <li><button type="button" class="search">Search</button></li>
+            <li><button type="button" class="btn btn-primary">Search</button></li>
           </ul>
         </div>
         <div class = "tutorPanel">
@@ -44,4 +81,6 @@
         </div>
     {{/if}}
   </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>

@@ -1,0 +1,29 @@
+<template name="register">
+  <script>
+  function showHideCourses(){
+    if(document.getElementById('tutor-yes').checked){
+      document.getElementById('courseOptions').style.display = 'block';
+    }else{
+      document.getElementById('courseOptions').style.display = 'none';
+    }
+  }
+  showHideCourses();
+  </script>
+  <form>
+    <ul class="register">
+      <li><h5>Email:</h5><input type="email" name="registerEmail"></li>
+      <li><h5>Password:</h5><input type="password" name="registerPassword"></li>
+      <li><h5>Register as Tutor? </h5><input type="radio" value="tutor-yes" name="tutor" id="tutor-yes" onClick="showHideCourses()"><h7> Yes </h7><input type="radio" value="tutor-No" name="tutor" onClick="showHideCourses()"><h7>  No  </h7></li>
+      <li>
+        <ul id="courseOptions">
+          <li><input type="checkbox" value="APSC111">APSC111</li>
+          <li><input type="checkbox" value="APSC172">APSC172</li>
+          <li><input type="checkbox" value="APSC143">APSC143</li>
+          <li><input type="checkbox" value="APSC151">APSC151</li>
+          <li><input type="checkbox" value="APSC131">APSC131</li>
+        </ul>
+      </li>
+      <li><input type="submit" class="btn btn -success" value="Register"></li>
+      </ul>
+  </form>
+</template>
