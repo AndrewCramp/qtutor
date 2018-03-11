@@ -24,7 +24,6 @@ body{
 #menuBar {
   margin: 0;
   padding: 0;
-  height: 10%;
   color: #ffffff;
   text-align: center;
   background-color: #2E3638;
@@ -33,21 +32,23 @@ body{
 #menuBar > li {
   display: inline-block;
 }
+
+#availability {
+  margin-top: 15px;
+  margin-left: 5px;
+  float: left;
+}
+
 .title{
   text-align: center;
 }
 .signin{
-  padding-top: 0;
-  padding-bottom: 0;
-  float: left;
+  position: absolute;
+  left: 92.5%;
+  margin-top: 5px;
+  margin-bottom: 0px;
+  float: right;
   margin-left: 0px
-}
-
-.loginButton{
-  height:100%;
-  color: white;
-  background: #4C8FFB;
-  border: 1px Solid #4C8FFB;
 }
 
 #loginList{

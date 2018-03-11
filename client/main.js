@@ -1,19 +1,9 @@
+import { Meteor } from 'meteor/meteor'
 import '../imports/startup/accounts-config.js'
 import '../imports/ui/body.js'
-
-Template.register.events({
-  'submit form': function(event) {
-    event.preventDefault();
-    var emailvar = event.target.registerEmail.value;
-    var passwordvar = event.target.registerPassword.value;
-    var tutor = event.target.tutor.value;
-    console.log("Form Submitted");
-    Accounts.createUser({
-      email: emailvar,
-      password: passwordvar
-    });
-    Meteor.loginWithPassword(emailvar, passwordvar);
-  }
+import { Tutors } from '../imports/api/tutors.js';
+Meteor.users.deny({
+  update() { return true; }
 });
 Template.login.events({
   'submit form': function(event) {

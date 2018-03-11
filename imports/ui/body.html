@@ -1,6 +1,9 @@
 <body>
   <div class = "container-fluid">
     <ul id="menuBar">
+      {{#if currentUser.profile.isTutor}}
+        <li id="availability">{{> availability}}</li>
+      {{/if}}
       <li><h1 class = "title"> QTutor </h1></li>
       <li class = "signin">
         {{#if currentUser}}
