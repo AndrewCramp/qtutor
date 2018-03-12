@@ -1,0 +1,33 @@
+<template name = "request">
+  <script>
+  $(document).ready(function(){
+  	$(".dropdown-toggle").dropdown();
+  });
+  </script>
+  <form>
+    <ul class="requestList">
+      <li>
+        <h5>Select a Course</h5>
+        <select class="form-control" id="courseSelector">
+          <option value="one">APSC111</option>
+          <option value="two">APSC131</option>
+          <option value="three">APSC143</option>
+          <option value="four">APSC171</option>
+          <option value="five">APSC151</option>
+        </select>
+      </li>
+      <li>
+        <h5>Select a Session Length</h5>
+        <select class="form-control" id="timeSelector">
+          <option value="one">30 Min</option>
+          <option value="two">1 hour</option>
+          <option value="three">1.5 hour</option>
+          <option value="four">2 hour</option>
+        </select>
+      </li>
+      <li>
+        <input type ="submit" class="btn btn -success" id="requestButton" value="Request">
+      </li>
+    </ul>
+  </form>
+</template>

@@ -38,7 +38,21 @@ body{
   margin-left: 5px;
   float: left;
 }
+#requestTutor{
+  float:left;
+  margin-top: 15px;
+  margin-left: 15px;
+}
 
+#courseSelector, #timeSelector{
+  margin-top: 5;
+  margin-bottom: 5;
+  max-width: 30%;
+}
+
+.requestList{
+  list-style: none;
+}
 .title{
   text-align: center;
 }
@@ -61,42 +75,6 @@ body{
 .courseOptions{
   list-style: none;
 }
-.sidePanel{
-  width:24.5%;
-  height: 100%;
-  float:left;
-  margin: 0;
-  border: 2px solid #d3d3d3;
-}
-#map {
-  float: right;
-  margin:0;
-  padding: 0;
-  width: 75.5%;
-}
-.courses{
-  list-style: none;
-}
-.tutorsList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  overflow: auto;
-  height: 70%;
-}
-.tutorsList > li {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 0px;
-  padding-right: 0px;
-  margin: 0;
-  border: 1px Solid #d3d3d3;
-}
-.tutorsList > li > button{
-  float:right;
-}
-.searchPanel{
-  height: 20%;
-  text-align: left;
-  border-bottom: 1px solid #d3d3d3;
+.map-container {
+   width: 100%;
 }
