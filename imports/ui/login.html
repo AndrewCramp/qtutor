@@ -1,10 +1,15 @@
 <template name="login">
+  <script>
+  $("#reg-switch").click(function(){
+       $('#login-modal').modal('hide');
+  });
+  </script>
   <form>
     <ul id="loginList">
       <li><h5>Email:</h5><input type="email" name="loginEmail"></li>
       <li><h5>Password:</h5><input type="password" name="loginPassword"></li>
       <li><input type ="submit" class="btn btn -success" value="login">
-      <button type="button" class="btn btn-link" data-toggle="modal" data-target="#register-modal">Register</button></li>
+      <button type="button" id="reg-switch" class="btn btn-link" data-toggle="modal" data-target="#register-modal">Register</button></li>
     </ul>
   </form>
 </template>

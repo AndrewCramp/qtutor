@@ -11,7 +11,7 @@ Template.map.helpers({
     if (GoogleMaps.loaded()) {
       if(latLng) {
       return {
-        center: new google.maps.LatLng(latLng.lat, latLng.lng),
+        center:  new google.maps.LatLng(latLng.lat, latLng.lng),
         zoom: 16,
         disableDefaultUI: true
       };
@@ -23,10 +23,6 @@ Template.map.helpers({
           };
         }
     }
-    marker = new google.maps.Marker({
-          position: new google.maps.LatLng(latLng.lat, latLng.lng),
-          map: map.instance
-        });
   }
 });
 Template.map.onCreated(function() {

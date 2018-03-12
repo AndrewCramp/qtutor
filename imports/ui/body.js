@@ -15,32 +15,37 @@ Template.register.events({
     var passwordvar = event.target.registerPassword.value;
     var firstvar = event.target.firstName.value;
     var lastvar = event.target.lastName.value;
-    if(event.target.tutor.value == "tutor-yes"){
-      Tutors.insert({
-        firstName: firstvar,
-        lastName: lastvar,
+    var tutorvar = event.target.tutor.value;
+    if(emailvar && passwordvar && firstvar && lastvar && tutorvar){
+      if(tutorvar == "tutor-yes" ){
+        Tutors.insert({
+          firstName: firstvar,
+          lastName: lastvar,
+          email: emailvar,
+          available: false,
+          location: {
+
+          },
+          courses: {
+
+          }
+        });
+        var tutor = true;
+      }else{
+        var tutor = false;
+      }
+      Accounts.createUser({
         email: emailvar,
-        available: false,
-        location: {
-
-        },
-        courses: {
-
+        password: passwordvar,
+        profile: {
+          isTutor: tutor
         }
       });
-      var tutor = true;
+      Meteor.loginWithPassword(emailvar, passwordvar);
+      $('#register-modal').modal('hide');
     }else{
-      var tutor = false;
+      document.getElementById('registerError').style.display = "list-item";
     }
-    Accounts.createUser({
-      email: emailvar,
-      password: passwordvar,
-      profile: {
-        isTutor: tutor
-      }
-    });
-    Meteor.loginWithPassword(emailvar, passwordvar);
-    $('#register-modal').modal('hide');
   }
 });
 
@@ -51,6 +56,7 @@ Template.login.events({
     var passwordvar = event.target.loginPassword.value;
     console.log("Form Submitted");
     Meteor.loginWithPassword(emailvar, passwordvar);
+    $('#login-modal').modal('hide');
   }
 });
 Template.body.helpers({
