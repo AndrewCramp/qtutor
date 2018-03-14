@@ -6,10 +6,10 @@
       {{/if}}
       {{#if currentUser}}
         <li id="requestTutor">
-          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#request-modal">Request Tutor</button>
+          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#request-modal" id="request-button">Request Tutor</button>
         </li>
       {{/if}}
-      <li><h1 class = "title"> QTutor </h1></li>
+      <li class = "title"><h1> QTutor </h1></li>
       <li class = "signin">
         {{#if currentUser}}
           {{> dashboard}}
