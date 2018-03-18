@@ -20,6 +20,8 @@ Template.availability.events({
     });
     console.log(marker);
     document.getElementById('request-button').style.display = "none";
+    GoogleMaps.maps.map.instance.setZoom(19);
+    GoogleMaps.maps.map.instance.setCenter(latLng);
   }
 });
 
@@ -29,5 +31,7 @@ Template.availability.events({
     Tutors.update({_id : Meteor.user().profile.tutor_id}, {$set: {available: false}});
     document.getElementById('request-button').style.display = "list-item";
     marker.setPosition(null);
+    GoogleMaps.maps.map.instance.setCenter(new google.maps.LatLng(44.2256, -76.4949));
+    GoogleMaps.maps.map.instance.setZoom(16);
     }
 });
