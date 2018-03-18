@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import './map.html'
 
 Meteor.startup(function() {
-  GoogleMaps.load();
+  GoogleMaps.load(key:'AIzaSyBcI9kTa2uXNhtw-DMbwJZE_tAs9cPbqgk');
 });
 
 Template.map.helpers({
