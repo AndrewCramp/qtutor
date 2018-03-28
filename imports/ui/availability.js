@@ -14,7 +14,7 @@ Template.availability.events({
         },
       }
     });
-      marker = new google.maps.Marker({
+    marker = new google.maps.Marker({
       position: new google.maps.LatLng(latLng.lat, latLng.lng),
       map: GoogleMaps.maps.map.instance
     });

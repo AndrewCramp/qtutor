@@ -8,6 +8,7 @@ import './body.html';
 import './dashboard.js';
 import'./map.js';
 import'./request.js';
+import'./receive.js';
 Template.register.events({
   'submit form': function(event) {
     event.preventDefault();
@@ -40,6 +41,12 @@ Template.register.events({
                 APSC151: APSC151var,
                 APSC143: APSC143var,
                 APSC131: APSC131var
+          },
+          request: {
+            email: null,
+            name: null,
+            latitude: null,
+            longitude: null
           }
         });
         var tutor = true;
@@ -50,6 +57,8 @@ Template.register.events({
         email: emailvar,
         password: passwordvar,
         profile: {
+          firstName: firstvar,
+          lastName: lastvar,
           isTutor: tutor,
           tutor_id: tutorId
         }
@@ -67,8 +76,19 @@ Template.login.events({
     event.preventDefault();
     var emailvar = event.target.loginEmail.value;
     var passwordvar = event.target.loginPassword.value;
+    var marker = new Array();
+    var count = 0;
     Meteor.loginWithPassword(emailvar, passwordvar);
     $('#login-modal').modal('hide');
+    Tutors.find().forEach( function(tutorDoc) {
+      if(tutorDoc.available){
+        marker[count] = new google.maps.Marker({
+          position: new google.maps.LatLng(tutorDoc.location.latitude, tutorDoc.location.longitude),
+          map: GoogleMaps.maps.map.instance
+        });
+      }
+      count++;
+    } );
   }
 });
 Template.body.helpers({
