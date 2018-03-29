@@ -31,6 +31,7 @@ Template.register.events({
           lastName: lastvar,
           email: emailvar,
           available: false,
+          hasRequest: false,
           location: {
             latitude: null,
             longitude: null
