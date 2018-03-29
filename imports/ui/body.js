@@ -45,6 +45,7 @@ Template.register.events({
           request: {
             email: null,
             name: null,
+            course: null,
             latitude: null,
             longitude: null
           }
