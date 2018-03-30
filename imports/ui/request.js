@@ -6,6 +6,23 @@ var rad = function(x) {
     return x * Math.PI / 180;
 };
 
+function tutor_update(sorted,n,coursevar){
+    Tutors.update({_id : sorted[n][0]}, {$set:
+            {
+                hasRequest: true,
+                request: {
+                    "email" : Meteor.user().emails[0].address,
+                    "name" : Meteor.user().profile.firstName+' '+Meteor.user().profile.lastName,
+                    "course" : coursevar.value,
+                    "latitude" : Geolocation.latLng().lat,
+                    "longitude" : Geolocation.latLng().lng
+                }
+            }
+    });
+    console.log(sorted[n][0]);
+    console.log(sorted[n][1]);
+}
+
 function distance(location1, location2){  // generally used geo measurement function
     var R = 6378.137; // Radius of earth in KM
     var dLat = (location2.lat - location1.lat) * Math.PI / 180;
@@ -48,7 +65,6 @@ Template.request.events({
         var coursevar = event.target.courseSelector;
         var lenghtvar = event.target.timeSelector;
         var tutorDist = new Array(100);
-        var sorted;
         var i=0;
         for(var j = 0; j < 100;j++){
             tutorDist[j] = new Array(2);
@@ -99,11 +115,24 @@ Template.request.events({
                 }
             }
         });
-        sorted = Sort_dist(tutorDist,i);
-        console.log(sorted);
-        console.log(sorted[0][0]);
-        console.log(sorted[0][1]);
+        var sorted = Sort_dist(tutorDist,i);
+        console.log(Meteor.user().profile.isTutor);
+        if (Meteor.user().profile.isTutor){
+            if (sorted[0][0]==Meteor.user().profile.tutor_id){
+                tutor_update(sorted,1,coursevar);
+            }else{
+                tutor_update(sorted,0,coursevar);
+            }
+        }else{
+            tutor_update(sorted,0,coursevar);
+        }
     }
 });
+
+
+
+
+
+
 //document.getElementById('registerError').style.display = "list-item";
 //<!option value="null"Please Select a course/option>
