@@ -57,6 +57,32 @@ body{
   display: none;
   color: #ff0000;
 }
+
+#responses{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  float: left;
+}
+#pendingRequest{
+  position: relative;
+left: 50%;
+-webkit-transform: translateX(-50%);
+-ms-transform: translateX(-50%);
+transform: translateX(-50%);
+}
+
+#loadingMessage{
+  text-align: center;
+}
+ul {
+  list-style: none;
+}
+#responses > li{
+  display: inline-block;
+  padding: 5px;
+}
+
 .requestList{
   list-style: none;
 }

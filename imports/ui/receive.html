@@ -1,7 +1,37 @@
 <template name="receive">
-  <ul id="receive-list">
-    <li><h5>Name: {{name}}</h5></li>
-    <li><h5>Email: {{email}}</h5></li>
-    <li><h5>Course: {{course}}</h5></li>
-  </ul>
+  <script>
+  function accept(){
+    document.getElementById("responses").style.display = 'none';
+  }
+  </script>
+  {{#if hasRequest}}
+    <ul id="receive-list">
+      <li><h5>Name: {{name}}</h5></li>
+      <li><h5>Email: {{email}}</h5></li>
+      <li><h5>Course: {{course}}</h5></li>
+      <li><h5>Duration: {{duration}} hour(s)</h5></li>
+      <ul id="responses">
+        <li><button type="button" class="btn btn-success" id="accept" onclick="accept()">Accept</button></li>
+        <li><button type="button" class="btn btn-danger" id="decline">Decline</button></li>
+      </ul>
+    </ul>
+  {{else}}
+    <ul>
+      <li>
+        <svg class="loader" version="1.1" id="pendingRequest" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          width="80px" height="80px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+          <path fill="#007bff" d="M43.935,25.145c0-10.318-8.364-18.683-18.683-18.683c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615c8.072,0,14.615,6.543,14.615,14.615H43.935z">
+           <animateTransform attributeType="xml"
+            attributeName="transform"
+            type="rotate"
+            from="0 25 25"
+            to="360 25 25"
+            dur="0.8s"
+          repeatCount="indefinite"/>
+          </path>
+        </svg>
+      </li>
+      <li id="loadingMessage"><h4>Waiting for Student</h4></li>
+    </ul>
+  {{/if}}
 </template>

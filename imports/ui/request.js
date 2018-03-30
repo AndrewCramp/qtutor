@@ -6,7 +6,7 @@ var rad = function(x) {
     return x * Math.PI / 180;
 };
 
-function tutor_update(sorted,n,coursevar){
+function tutor_update(sorted,n,coursevar, lenghtvar){
     Tutors.update({_id : sorted[n][0]}, {$set:
             {
                 hasRequest: true,
@@ -15,7 +15,9 @@ function tutor_update(sorted,n,coursevar){
                     "name" : Meteor.user().profile.firstName+' '+Meteor.user().profile.lastName,
                     "course" : coursevar.value,
                     "latitude" : Geolocation.latLng().lat,
-                    "longitude" : Geolocation.latLng().lng
+                    "longitude" : Geolocation.latLng().lng,
+                    "time" : lenghtvar.value,
+                    "id" : Meteor.userId()
                 }
             }
     });
@@ -61,6 +63,8 @@ function Sort_dist(data,l) {
 
 Template.request.events({
     'submit form': function (event) {
+        Meteor.users.update({_id: Meteor.userId()}, {$set: {"profile.sentRequest": true}});
+        console.log("test");
         event.preventDefault();
         var coursevar = event.target.courseSelector;
         var lenghtvar = event.target.timeSelector;
@@ -72,65 +76,75 @@ Template.request.events({
 
         Tutors.find().forEach(function (tutorLoc) {
             //if gpa/rating/if connected then stop availibility
-
-            if (coursevar.value == 'APSC111'){
-                if (tutorLoc.courses.APSC111) {
-                    var location1 = {lat: tutorLoc.location.latitude, lng: tutorLoc.location.longitude};
-                    var location2 = Geolocation.latLng();
-                    tutorDist[i][0] = tutorLoc._id;
-                    tutorDist[i][1] = distance(location1, location2);
-                    i++;
-                }
-            }else if (coursevar.value == 'APSC131'){
-                if (tutorLoc.courses.APSC131) {
-                    var location1 = {lat: tutorLoc.location.latitude, lng: tutorLoc.location.longitude};
-                    var location2 = Geolocation.latLng();
-                    tutorDist[i][0] = tutorLoc._id;
-                    tutorDist[i][1] = distance(location1, location2);
-                    i++;
-                }
-            }else if (coursevar.value == 'APSC143'){
-                if (tutorLoc.courses.APSC143) {
-                    var location1 = {lat: tutorLoc.location.latitude, lng: tutorLoc.location.longitude};
-                    var location2 = Geolocation.latLng();
-                    tutorDist[i][0] = tutorLoc._id;
-                    tutorDist[i][1] = distance(location1, location2);
-                    i++;
-                }
-            }else if (coursevar.value == 'APSC171'){
-                if (tutorLoc.courses.APSC171) {
-                    var location1 = {lat: tutorLoc.location.latitude, lng: tutorLoc.location.longitude};
-                    var location2 = Geolocation.latLng();
-                    tutorDist[i][0] = tutorLoc._id;
-                    tutorDist[i][1] = distance(location1, location2);
-                    i++;
-                }
-            }else if (coursevar.value == 'APSC151'){
-                if (tutorLoc.courses.APSC151) {
-                    var location1 = {lat: tutorLoc.location.latitude, lng: tutorLoc.location.longitude};
-                    var location2 = Geolocation.latLng();
-                    tutorDist[i][0] = tutorLoc._id;
-                    tutorDist[i][1] = distance(location1, location2);
-                    i++;
-                }
+            if(tutorLoc.available){
+              if (coursevar.value == 'APSC111'){
+                  if (tutorLoc.courses.APSC111) {
+                      var location1 = {lat: tutorLoc.location.latitude, lng: tutorLoc.location.longitude};
+                      var location2 = Geolocation.latLng();
+                      tutorDist[i][0] = tutorLoc._id;
+                      tutorDist[i][1] = distance(location1, location2);
+                      i++;
+                  }
+              }else if (coursevar.value == 'APSC131'){
+                  if (tutorLoc.courses.APSC131) {
+                      var location1 = {lat: tutorLoc.location.latitude, lng: tutorLoc.location.longitude};
+                      var location2 = Geolocation.latLng();
+                      tutorDist[i][0] = tutorLoc._id;
+                      tutorDist[i][1] = distance(location1, location2);
+                      i++;
+                  }
+              }else if (coursevar.value == 'APSC143'){
+                  if (tutorLoc.courses.APSC143) {
+                      var location1 = {lat: tutorLoc.location.latitude, lng: tutorLoc.location.longitude};
+                      var location2 = Geolocation.latLng();
+                      tutorDist[i][0] = tutorLoc._id;
+                      tutorDist[i][1] = distance(location1, location2);
+                      i++;
+                  }
+              }else if (coursevar.value == 'APSC171'){
+                  if (tutorLoc.courses.APSC171) {
+                      var location1 = {lat: tutorLoc.location.latitude, lng: tutorLoc.location.longitude};
+                      var location2 = Geolocation.latLng();
+                      tutorDist[i][0] = tutorLoc._id;
+                      tutorDist[i][1] = distance(location1, location2);
+                      i++;
+                  }
+              }else if (coursevar.value == 'APSC151'){
+                  if (tutorLoc.courses.APSC151) {
+                      var location1 = {lat: tutorLoc.location.latitude, lng: tutorLoc.location.longitude};
+                      var location2 = Geolocation.latLng();
+                      tutorDist[i][0] = tutorLoc._id;
+                      tutorDist[i][1] = distance(location1, location2);
+                      i++;
+                  }
+              }
             }
         });
         var sorted = Sort_dist(tutorDist,i);
         console.log(Meteor.user().profile.isTutor);
         if (Meteor.user().profile.isTutor){
             if (sorted[0][0]==Meteor.user().profile.tutor_id){
-                tutor_update(sorted,1,coursevar);
+                tutor_update(sorted,1,coursevar, lenghtvar);
             }else{
-                tutor_update(sorted,0,coursevar);
+                tutor_update(sorted,0,coursevar, lenghtvar);
             }
         }else{
-            tutor_update(sorted,0,coursevar);
+            tutor_update(sorted,0,coursevar, lenghtvar);
         }
     }
 });
 
+Template.request.email= function(){
+    console.log("testing");
+    var email = Meteor.user().profile.tutor.email;
+    return email;
+}
 
-
+Template.request.name = function(){
+  console.log("testing");
+    var name = Meteor.user().profile.tutor.name;
+    return name;
+}
 
 
 

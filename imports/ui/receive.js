@@ -32,3 +32,33 @@ Template.receive.course= function(){
     var course = Tutors.findOne({_id: tutorid}).request.course;
     return course;
 }
+
+Template.receive.duration= function(){
+    var tutorid = Meteor.user().profile.tutor_id;
+    var duration = Tutors.findOne({_id: tutorid}).request.time;
+    return duration;
+}
+
+Template.receive.hasRequest= function(){
+    var tutorid = Meteor.user().profile.tutor_id;
+    var hasRequest = Tutors.findOne({_id: tutorid}).hasRequest;
+    return hasRequest;
+}
+
+Template.receive.events({
+  'click #decline': function(event) {
+    var tutorid = Meteor.user().profile.tutor_id;
+    Tutors.update({_id : Meteor.user().profile.tutor_id}, {$set:
+      {
+        hasRequest: false,
+      }
+    });
+    Meteor.users.update({_id: Tutors.findOne({_id: tutorid}).request.id}, {$set: {"profile.sentRequest": false}});
+  },
+  'click #accept': function(event) {
+    var tutorid = Meteor.user().profile.tutor_id;
+    Meteor.users.update({_id: Tutors.findOne({_id: tutorid}).request.id}, {$set: {"profile.RequestAccepted": true}});
+    Meteor.users.update({_id: Tutors.findOne({_id: tutorid}).request.id}, {$set: {"profile.tutor.email": Meteor.user().emails[0].address}});
+    Meteor.users.update({_id: Tutors.findOne({_id: tutorid}).request.id}, {$set: {"profile.tutor.name": Meteor.user().profile.firstName+' '+Meteor.user().profile.lastName}});
+  }
+});
